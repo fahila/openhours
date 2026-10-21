@@ -1,0 +1,6 @@
+{
+  "name": "Openhour",
+  "avoid": ["Calendly", "Calendly Inc"],
+  "domains": ["calendly.com"],
+  "colors": ["#006bff", "#0069ff", "#0b3558"]
+}

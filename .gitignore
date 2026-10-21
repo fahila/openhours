@@ -1,0 +1,18 @@
+node_modules
+.next
+.data
+next-env.d.ts
+tsconfig.tsbuildinfo
+design/shots
+
+# secrets: keep .env.example, ignore every other .env file
+.env*
+!.env.example
+**/.env*
+!**/.env.example
+app/AGENTS.md
+
+# test output
+app/e2e/report
+app/e2e/results
+app/test-results

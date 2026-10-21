@@ -1,0 +1,73 @@
+feature,area,priority,original,clone,notes
+Sign up with email or Google,onboarding,must,yes,partial,"Google sign-in with an email allow-list (no email/password); built; verified against a local mock, real-keys run pending"
+Connect a calendar to read busy times (Google / Outlook / Office 365),onboarding,must,yes,partial,"Google only, no Outlook; built; verified against a local mock, real-keys run pending"
+Set weekly availability schedule,availability,must,yes,yes,S11
+Date overrides (single-day hours or time off),availability,must,yes,yes,S11
+Check multiple calendars for conflicts,availability,should,yes,partial,"Several calendars across several Google accounts; built; verified against a local mock, real-keys run pending"
+Write bookings to a chosen calendar,availability,must,yes,partial,"built; verified against a local mock, real-keys run pending"
+Create event type (name / duration / location / color),event types,must,yes,yes,"S03, S04"
+One-on-one event type,event types,must,yes,yes,S04
+Group event type (many invitees one slot),event types,should,yes,yes,S04; capacity tested
+Collective event type (many hosts one invitee),event types,could,yes,no,Teams
+Round-robin event type (auto-assign host),event types,could,yes,no,Teams; own use = only if multi-person
+Cannot convert event type kind (create new),event types,could,yes,no,Constraint observed in help; optional to mirror
+Location options (Zoom / Meet / phone / in person / custom),event types,must,yes,partial,"Options, address and Google Meet links (Meet created with the calendar event); Zoom and phone are labels only, no live Zoom link"
+Video link auto-added to invite,integrations,should,yes,partial,"Google Meet only, no Zoom; built; verified against a local mock, real-keys run pending"
+Buffer time before and after,availability,should,yes,yes,S04; engine tested
+Minimum scheduling notice,availability,must,yes,yes,S04
+Date range (rolling days or fixed range),availability,should,yes,partial,Rolling days only; no fixed start/end dates
+Start time increments,availability,could,yes,yes,S04
+Meeting limits per day / week / month (per type or all types),availability,should,yes,partial,Per event type only; not across all event types
+Free/busy rules (allow booking over chosen events),availability,could,yes,no,Match by title exception
+Custom invite form questions,booking page,should,yes,partial,One fixed optional notes field; no question builder (S05)
+Custom event link slug,booking page,should,yes,yes,S04
+Public booking page with open slots,booking page,must,yes,yes,"S30, S31, S32"
+Book a slot as guest without account,booking page,must,yes,yes,S33; double booking blocked
+Invitee time zone detection and switcher,booking page,must,yes,yes,S31; 12/24h toggle too
+Add guests to a booking,booking page,could,yes,no,
+Confirmation page after booking,booking page,must,yes,yes,S34; per-event message supported
+Redirect to external URL after booking,booking page,could,unverified,no,Not confirmed in sources
+Secret / hidden event type,event types,could,unverified,no,Not confirmed in sources
+Guest reschedule or cancel from emailed link,booking page,must,yes,partial,"Links are in the emails; built; verified against a local mock, real-keys run pending"
+Cancellation policy text,booking page,could,yes,no,
+Mark invitee as no-show,scheduled events,could,yes,no,Seen in API
+Scheduled events list (upcoming / past / filters),scheduled events,must,yes,partial,"Upcoming and past tabs, cancel with a reason, the guest's note, and a paid / waiting / refunded badge; no filters, no no-show marking"
+Confirmation email to host and invitee,notifications,must,yes,partial,"built; verified against a local mock, real-keys run pending"
+Calendar invite (ICS) sent to invitee,notifications,must,yes,partial,"Attached to confirmation and cancellation emails; built; verified against a local mock, real-keys run pending"
+Email reminders before meeting,notifications,should,yes,partial,"24 hour reminder created for every new account; no screen to edit it (S13); built; verified against a local mock, real-keys run pending"
+Follow-up emails after meeting,notifications,should,yes,partial,The job engine supports it; no screen to create one (S13)
+SMS reminders,notifications,could,yes,no,Reportedly Teams tier; needs SMS provider
+Workflows: triggers before / after event / on booked / on canceled,workflows,should,yes,partial,All four triggers run; no screen to manage them (S13)
+Workflow templates (e.g. email reminder with cancel+reschedule links),workflows,could,yes,no,
+Workflows send from user's connected Gmail/Outlook,workflows,could,yes,no,Sends from the app's own verified domain through Resend instead
+Meeting polls (vote on times),meeting polls,could,yes,no,Holds times on calendars until booked
+One-off meetings (single-use link outside normal availability),single-use links,should,yes,no,
+Single-use links from any event type (status Created / Viewed / Booked),single-use links,should,yes,no,
+Embed: inline / popup / floating widget,embeds,should,yes,no,Existence confirmed; behaviors unverified
+Routing forms (answers choose event type or URL),routing,could,yes,no,Admin only; unqualified page option
+CRM-owner routing (Salesforce / HubSpot),routing,could,yes,skip,Needs CRM; out of scope for own use
+Stripe payments at booking,payments,should,yes,partial,"Checkout, signed webhooks, hold and release, late-payment refund; test mode; built; verified against a local mock, real-keys run pending"
+PayPal payments at booking,payments,could,yes,no,Standard tier
+Zapier / webhooks,integrations,should,yes,no,
+Public REST API v2 (event types / scheduled events / invitees),api,should,yes,no,PAT + OAuth auth
+Webhooks invitee.created / canceled / rescheduled,api,should,yes,no,
+HubSpot / Mailchimp integrations,integrations,could,yes,no,
+Salesforce integration,integrations,could,yes,skip,Teams tier; no need for own use
+Chrome / Edge / Firefox extension,extensions,could,yes,no,
+Outlook add-in,extensions,could,yes,no,
+Contacts tab (meeting history with people),contacts,could,yes,no,
+Mobile apps (iOS / Android),mobile,could,yes,skip,Out of scope: web only
+"Team / org management (users, invites, roles: Owner, Admin, Group admin, Team manager, User)",admin,could,yes,no,Own use may be single user
+Groups (department / team),admin,could,yes,no,
+Branding: logo + colors,admin,could,yes,no,
+Admin activity log,admin,could,yes,no,
+Admin analytics / dashboard,analytics,could,yes,no,
+Invitee data deletion requests,admin,could,yes,no,Hosts can delete their whole account; no per-guest deletion screen
+SSO / SAML,security,could,yes,skip,Teams+; not needed for own use
+SCIM provisioning,security,could,yes,skip,Enterprise
+Captcha on suspicious bookings,security,should,yes,partial,"Database-backed rate limits per IP, per email and per host; no captcha"
+AI notetaker (recordings / transcripts / recaps),ai,could,yes,skip,Paid add-on; huge scope; use a third-party tool
+AI email assistant (Callie),ai,could,yes,skip,Beta
+Calendly trademarks / logo / copy / templates,brand,could,yes,skip,Never copied
+Calendly user base and marketplace listings,network,could,yes,skip,Cannot be cloned
+Enterprise plan,billing,could,yes,skip,Own use: no billing needed
